@@ -1,13 +1,19 @@
 from flask import Flask, request, redirect, render_template
-import cgi
-import os
+
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-@app.route("/")
-def display_blog():
-    return render_template("index.html")
+blogs = []
+
+@app.route("/", methods=['POST', 'GET'])
+def index():
+
+    if request.method == 'POST':
+        blog = request.form['blog']
+        blogs.append(blog)
+
+    return render_template("index.html", title="Build A Blog", blogs=blogs)
 
 @app.route("/form")
 def submit_form():

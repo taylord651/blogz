@@ -1,5 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h1>Build-A-Blog</h1>
+    <form method='POST'>
+        <label>
+            New Blog:
+            <input type="text" name="blog"/>
+        </label>
+        <input type="submit" value="Add blog post"/>
+    </form>
 
+    <hr />
+    
+    {% if blogs|length == 0  %}
+    <p>No blog posts yet</p>
+    {% else %}
+    
+        <ul>
+            {% for blog in blogs %}
+            <li>{{blog}}</li>
+            {% endfor %}
+
+        </ul>
+    {% endif %}
 {% endblock %}
