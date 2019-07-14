@@ -3,10 +3,20 @@
 {% block content %}
     <h1>Build-A-Blog</h1>
     <form method='POST'>
-        <label>
-            New Blog:
-            <input type="text" name="blog"/>
-        </label>
+        <table>
+            <tr>
+                <td><label for="title">Blog Post Title</label></td>
+                <td>
+                    <input type="text" name="title"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="content">Blog Content</label></td>
+                <td>
+                    <textarea name="content"></textarea>
+                </td>
+            </tr>
+        </table>
         <input type="submit" value="Add blog post"/>
     </form>
 
@@ -17,8 +27,12 @@
     {% else %}
     
         <ul>
-            {% for blog in blogs %}
-            <li>{{blog}}</li>
+            {% for title in blogs %}
+            <li>{{title}}</li>
+            {% endfor %}
+
+            {% for content in blogs %}
+            <li>{{content}}</li>
             {% endfor %}
 
         </ul>
