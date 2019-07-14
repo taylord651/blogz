@@ -22,18 +22,15 @@
 
     <hr />
     
-    {% if blogs|length == 0  %}
+    {% if titles|length == 0 and contents|length == 0  %}
     <p>No blog posts yet</p>
     {% else %}
-    
-        <ul>
-            {% for title in blogs %}
-            <li>{{title}}</li>
-            {% endfor %}
 
-            {% for content in blogs %}
-            <li>{{content}}</li>
-            {% endfor %}
+        {% for title in titles %}
+        <h3>{{title.title}}</h3>
+        <p>{{title.content}}</p>
+        {% endfor %}
+
 
         </ul>
     {% endif %}

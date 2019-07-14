@@ -16,19 +16,21 @@ class Blog(db.Model):
         self.title = title
         self.content = content
 
-titles = []
-contents = []
-
 @app.route("/", methods=['POST', 'GET'])
 def index():
 
     if request.method == 'POST':
         title = request.form['title']
-        content = reqeuest.form['content']
-        titles.append(title)
-        contents.append(contents)
+        content = request.form['content']
+        blog_post = Blog(title, content)
+        db.session.add(blog_post)
+        db.session.commit()
 
-    return render_template("index.html", title="Build A Blog", titles=titles, contents=contents)
+    titles = Blog.query.all()
+    contents = Blog.query.all()
+
+    return render_template("index.html", title="Build A Blog", 
+        titles=titles, contents=contents)
 
 @app.route("/form")
 def submit_form():
