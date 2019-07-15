@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Submit a New Post</h1>
+<form method='POST'>
+    <table>
+        <tr>
+            <td><label for="title">Blog Post Title:</label></td>
+            <td>
+                <input id='title' type="text" name="title"/>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="author">Author:</label></td>
+            <td>
+                <input is='author' type="text" name="author"/>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="date">Date:</label></td>
+            <td>
+                <input id="date" type="text" name="date"/>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="content">Blog Content:</label></td>
+            <td>
+                <textarea id='content' name="content" rows='5' cols='30'></textarea>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Add blog post"/>
+</form>
+
+<hr />
+
+{% endblock %}

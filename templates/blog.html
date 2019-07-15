@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Build-A-Blog</h1>
+
+    {% if titles|length == 0 %}
+    <p>No blog posts yet</p>
+    {% else %}
+
+        {% for title in titles %}
+            <h2>{{title.title}}</h2>
+            <p>Author: {{title.author}}</p>
+            <p>Date: {{title.date}}</p>
+            <p>{{title.content}}</p>
+        {% endfor %}
+
+
+        </ul>
+    {% endif %}
+{% endblock %}
