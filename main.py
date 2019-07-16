@@ -25,8 +25,6 @@ class Blog(db.Model):
 @app.route("/blog", methods=['POST', 'GET'])
 def index():
 
-# return redirect("/blog?id={0}", blog)
-
     blog_id = request.args.get("id")
 
     if blog_id == None:
@@ -35,14 +33,11 @@ def index():
     else:
         blog_post = Blog.query.get(blog_id)
         return render_template("display.html", blog_post=blog_post)
-        
-#Todo - handle a GET request with query parameters to display a single blog post
-    #id = request.args.get('id')
-    #return render_template('display.html', 
-    #   id.title=title, id.content=content)
 
 @app.route("/newpost", methods=['POST', 'GET'])
 def submit_post():
+
+    post_id = request.args.get("id")
     
     if request.method == 'POST':
         title = request.form['title']
@@ -63,8 +58,12 @@ def submit_post():
             blog_post = Blog(title, author, date, content)
             db.session.add(blog_post)
             db.session.commit()
-            flash("Submitted a new post!", "success")
-            return redirect ('/')
+
+            if post_id == None:
+                post_id = request.args.get("id")
+                flash("Submitted a new post!", "success")
+                return render_template("display.html", blog_post=blog_post)
+
         else: 
             flash("Title and blog content are required", "error")
             return render_template("newpost.html",
