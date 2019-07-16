@@ -3,15 +3,18 @@
 {% block content %}
     <h1>Build-A-Blog</h1>
 
-    {% if titles|length == 0 %}
+
+
+    {% if blog_post|length == 0 %}
     <p>No blog posts yet</p>
     {% else %}
 
-        {% for title in titles %}
-            <h2>{{title.title}}</h2>
-            <p>Author: {{title.author}}</p>
-            <p>Date: {{title.date}}</p>
-            <p>{{title.content}}</p>
+        {% for blog_post in blog_post %}
+            <a href='/blog?id={{blog_post.id}}'><h2>{{blog_post.title}}</h2></a>
+            <p>Author: {{blog_post.author}}</p>
+            <p>Date: {{blog_post.date}}</p>
+            <p>{{blog_post.content}}</p>
+            <hr/>
         {% endfor %}
 
 
