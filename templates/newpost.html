@@ -3,19 +3,13 @@
 {% block content %}
 
 <h1>Submit a New Post</h1>
-<form method='POST'>
+<form method='POST' style="display:inline-block">
     <table>
         <tr>
             <td><label for="title">Blog Post Title:</label></td>
             <td>
                 <input id='title' type="text" name="title" value="{{title}}"/>
                 <p class="error">{{title_error}}</p>
-            </td>
-        </tr>
-        <tr>
-            <td><label for="author">Author:</label></td>
-            <td>
-                <input is='author' type="text" name="author" value="{{author}}"/>
             </td>
         </tr>
         <tr>
